@@ -1,13 +1,32 @@
+import React, { useState, useEffect } from "react";
+import {Task} from "../../interface/TaskInterface";
 import ModalDel from "../ModalDel";
 import ModalEdit from "../ModalEdit";
-import { Container, Content, TaskArea, Table, Inputs, Action, Del, Edit, Add,Check,Calendar } from "./styles";
-import React, { useState } from "react"; 
+import { Container, Content, TaskArea, Table, Inputs, Action, Del, Edit, Add, Check, Calendar } from "./styles";
+import { getAllTasks } from "../../services/TaskService";
 
 const Home = () => {
-  // Define isOpen e toggle dentro do componente Home
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [isDel, setIsDel] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
+  const handleGetData = async () => {
+    
+    console.log('dsa');
+    try {
+      const { error, body } = await getAllTasks()
+      console.log(body);
+      if (!error) {
+        setTasks(body);
+      } 
+    } catch (error) {
+      console.log(error);
+    }
+
+   
+  }
+    
+  useEffect(() => {handleGetData()},[]);
 
   return (
     <>
@@ -20,26 +39,31 @@ const Home = () => {
           </Inputs>
         </Content>
         <ModalDel isOpen={isDel} onClose={() => setIsDel(false)} />
-        <ModalEdit isOpen={isEdit} onClose={() => setIsEdit(false)}/>
-
+        <ModalEdit isOpen={isEdit} onClose={() => setIsEdit(false)} />
 
         <TaskArea>
           <Table>
-            <tr>
-              <th><Check/></th>
-              <th>Nome da Tarefa</th>
-              <th><Calendar/>Data</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Levar o lixo</td>
-              <td>12/12/2024</td>
-              <Action>
-                <Del onClick={()=> setIsDel(!isDel)} />
-                <Edit onClick={()=> setIsEdit(!isEdit)} />
-              </Action>
-            </tr>
+            <thead>
+              <tr>
+                <th><Check /></th>
+                <th>Nome da Tarefa</th>
+                <th><Calendar />Data</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            
+              {tasks.map(task => (
+                <tr key={task.id}>
+                  <td><input type="checkbox" /></td>
+                  <td>{task.description}</td>
+                  <td>{task.data}</td>
+                  <Action>
+                    <Del onClick={() => setIsDel(!isDel)} />
+                    <Edit onClick={() => setIsEdit(!isEdit)} />
+                  </Action>
+                </tr>
+              ))}
+            
           </Table>
         </TaskArea>
       </Container>
