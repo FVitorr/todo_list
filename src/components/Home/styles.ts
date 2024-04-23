@@ -71,7 +71,6 @@ export const TaskArea = styled.div`
   top:-16%;
   height:100%;
   min-width:90%;
-  max-height:500px;
   max-width:900px;
   width:90%;
   border-radius:20px;

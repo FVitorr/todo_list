@@ -1,13 +1,15 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Header } from "./styles";
 
-const Modal = ({ isOpen, onClose }) => {
+const ModalEdit = ({ isOpen, onClose }) => {
   if (isOpen) {
     return (
       <>
         <Container>
           {/* Botão para fechar o modal */}
-          <button onClick={onClose}>Fechar</button>
+          <Header>
+            <button onClick={onClose}>Fechar</button>
+          </Header>
           MODAL
         </Container>
       </>
@@ -17,4 +19,4 @@ const Modal = ({ isOpen, onClose }) => {
   }
 };
 
-export default Modal;
+export default ModalEdit;

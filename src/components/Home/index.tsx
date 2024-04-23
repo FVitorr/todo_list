@@ -1,15 +1,13 @@
-import Modal from "../Modal";
+import ModalDel from "../ModalDel";
+import ModalEdit from "../ModalEdit";
 import { Container, Content, TaskArea, Table, Inputs, Action, Del, Edit, Add } from "./styles";
 import React, { useState } from "react"; 
 
 const Home = () => {
   // Define isOpen e toggle dentro do componente Home
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDel, setIsDel] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const toggle = () => {
-    // Usa a função 'setIsOpen' para alternar o valor de 'isOpen'
-    setIsOpen(!isOpen);
-  };
 
   return (
     <>
@@ -21,7 +19,9 @@ const Home = () => {
             <Add />
           </Inputs>
         </Content>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalDel isOpen={isDel} onClose={() => setIsDel(false)} />
+        <ModalEdit isOpen={isEdit} onClose={() => setIsEdit(false)}/>
+
 
         <TaskArea>
           <Table>
@@ -34,8 +34,8 @@ const Home = () => {
               <td>Levar o lixo</td>
               <td>12/12/2024</td>
               <Action>
-                <Del onClick={()=> setIsOpen(true)} />
-                <Edit />
+                <Del onClick={()=> setIsDel(!isDel)} />
+                <Edit onClick={()=> setIsEdit(!isEdit)} />
                 <input type="checkbox" />
               </Action>
             </tr>

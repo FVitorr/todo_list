@@ -13,3 +13,12 @@ export const Container=styled.div`
   min-width:55%;
   height:320px;
 `;
+
+export const Header = styled.div`
+  width:100%;
+  border:1px solid black;
+  display:flex;
+  align-items:end;
+  justify-content:end;
+  border-radius:20px;
+`;
