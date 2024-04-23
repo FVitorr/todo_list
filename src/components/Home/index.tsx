@@ -1,6 +1,6 @@
 import ModalDel from "../ModalDel";
 import ModalEdit from "../ModalEdit";
-import { Container, Content, TaskArea, Table, Inputs, Action, Del, Edit, Add } from "./styles";
+import { Container, Content, TaskArea, Table, Inputs, Action, Del, Edit, Add,Check,Calendar } from "./styles";
 import React, { useState } from "react"; 
 
 const Home = () => {
@@ -26,17 +26,18 @@ const Home = () => {
         <TaskArea>
           <Table>
             <tr>
-              <th>List</th>
-              <th>Data</th>
+              <th><Check/></th>
+              <th>Nome da Tarefa</th>
+              <th><Calendar/>Data</th>
               <th>Action</th>
             </tr>
             <tr>
+              <td><input type="checkbox" /></td>
               <td>Levar o lixo</td>
               <td>12/12/2024</td>
               <Action>
                 <Del onClick={()=> setIsDel(!isDel)} />
                 <Edit onClick={()=> setIsEdit(!isEdit)} />
-                <input type="checkbox" />
               </Action>
             </tr>
           </Table>

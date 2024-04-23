@@ -6,6 +6,10 @@ import {PencilSquare} from "@styled-icons/bootstrap/PencilSquare"
 
 import {Plus} from "@styled-icons/bootstrap/Plus"
 
+import {Check2} from "@styled-icons/bootstrap/Check2"
+
+import {Calendar3} from "@styled-icons/bootstrap/Calendar3"
+
 export const Container = styled.div`
   display:flex;
   flex-direction:column;
@@ -41,25 +45,25 @@ width:90%;
 gap: 1rem;
 margin: 0 auto;
 
+  >input{
+    width:45%;
+    height:25px;
+    padding:0;
+    border:none;
+    border-bottom:1px solid #1A197F;
+    outline:none;
+    font-size:14px;
 
->input{
-  width:45%;
-  height:25px;
-  padding:0;
-  border:none;
-  border-bottom:1px solid #1A197F;
-  outline:none;
-  font-size:14px;
-
-  &:hover{
-    cursor: pointer;
-}
-
->button{
-  width:5%;
-  height:25px;
-  border-radius:5px;
-}
+    &:hover{
+      cursor: pointer;
+    
+    }
+  }
+  >button{
+    width:5%;
+    height:25px;
+    border-radius:5px;
+  }
 `;
 
 
@@ -74,7 +78,7 @@ export const TaskArea = styled.div`
   max-width:900px;
   width:90%;
   border-radius:20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
   overflow-y:auto;
   scrollbar-width: none;
 
@@ -86,17 +90,26 @@ export const TaskArea = styled.div`
 export const Table = styled.table`
   margin-top:1rem;
   width:90%;
-  border-spacing:1rem;
   font-size:14px;
+  
   >tr{
     text-align: left;
-    >th:nth-child(2),>th:nth-child(3){
+    >th{
+      color:grey;
+    }
+    >th:nth-child(3),>th:nth-child(4){
       width:100px;
+      height:32px;
     }
     >td,th{
+      height:32px;
       border-bottom:1px solid #1A197F;
-      padding-bottom:2px;
     }
+    >th:nth-child(1),>td:nth-child(1){
+      
+      width:32px;
+    }
+  
   }
 
 `;
@@ -105,7 +118,7 @@ export const Action = styled.td`
   display:flex;
   flex-direction:row;
   width:100px;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content:space-around;
 
   >input{
@@ -150,3 +163,12 @@ export const Add = styled(Plus)`
     cursor: pointer;
   }
 `;
+
+export const Check = styled(Check2)`
+  width:20px;
+`;
+
+export const Calendar = styled(Calendar3)`
+  width:18px;
+  margin-right:6px;
+`
